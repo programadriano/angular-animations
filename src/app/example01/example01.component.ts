@@ -1,10 +1,9 @@
-import { Component, OnInit, state, style, transition, animate, trigger } from '@angular/core';
-
+import { Component, state, style, transition, animate, trigger } from '@angular/core';
 
 @Component({
   selector: 'app-example01',
-  templateUrl: './example01.component.html',
-  styleUrls: ['./example01.component.css'],
+  moduleId: module.id,
+  templateUrl: 'example01.component.html',
   animations: [
     trigger('stretch', [
       state('normal', style({ width: '40px' })),
@@ -14,21 +13,16 @@ import { Component, OnInit, state, style, transition, animate, trigger } from '@
     ])
   ]
 })
-export class Example01Component implements OnInit {
+export class Example01Component {
 
-  constructor() { }
+  NORMAL_STATE = 'normal';
 
-  buttonState = 'normal';
+  STRETCHED_STATE = 'stretched';
+
+  buttonState = this.NORMAL_STATE;
 
   changeState() {
-    if (this.buttonState == 'normal') {
-      this.buttonState = 'stretched';
-    }else{
-      this.buttonState = 'normal';
-    }
+    this.buttonState === this.NORMAL_STATE ?
+      this.buttonState = this.STRETCHED_STATE : this.buttonState = this.NORMAL_STATE;
   }
-
-  ngOnInit() {
-  }
-
 }
